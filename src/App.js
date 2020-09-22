@@ -52,7 +52,7 @@ class App extends React.Component {
         <Header />
         <SearchBar value={this.state.searchTerm} changeHandler={this.changeHandler}/>
         <RandomButton/>
-        <PlaneteersContainer planeteers={this.state.planeteers} clickHandler={this.clickHandler}/>
+        <PlaneteersContainer planeteers={this.state.planeteers} clickHandler={this.clickHandler} searchTerm={this.state.searchTerm}/>
       </div>
     );
   }

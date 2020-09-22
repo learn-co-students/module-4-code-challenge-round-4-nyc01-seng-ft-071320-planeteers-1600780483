@@ -1,11 +1,13 @@
 import React from 'react';
 import Planeteer from './Planeteer'
+import SearchBar from './SearchBar'
 
 class PlaneteersContainer extends React.Component {
 
   renderPlaneteers = () => {
-    let filteredArray = this.props.planeteers.filter(el => el.name.includes(this.props.searchTerm) || el.bio.includes(this.props.searchTerm))
-    return this.props.planeteers.map(el => <Planeteer key={el.id} planeteer={el} clickHandler={this.props.clickHandler}/>)
+    let filterArray = this.props.planeteers.filter(el => el.name.toLowerCase().includes(this.props.searchTerm) || el.bio.toLowerCase().includes(this.props.searchTerm))
+    // console.log(filterArray)
+    return filterArray.map(el => <Planeteer key={el.id} planeteer={el} clickHandler={this.props.clickHandler}/>)
   }
 
   render() {
