@@ -6,10 +6,16 @@ class SearchBar extends React.Component {
     this.props.changeHandler(e)
   }
 
+  checked = (e) => {
+    this.props.sortPlaneteers(e)
+  }
+
   render() {
     return (
       <div className="search">
-        <input type="text" onChange={this.changed} value={this.props.searchValue} placeholder="Search Here"></input>
+        <input type="text" onChange={this.changed} value={this.props.searchValue} placeholder="Search Here"></input><br></br>
+        <input type="checkbox" name="sort" onChange={this.checked} value="true"></input>
+        <label>Sort</label>
       </div>
     );
   }
