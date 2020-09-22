@@ -1,9 +1,15 @@
 import React from "react";
 
-class SearchBar extends React.Component {
-	render() {
-		return <div className="search"></div>;
-	}
+function SearchBar(props) {
+	return (
+		<form className="search">
+			<input
+				placeholder="Search Planeteers"
+				value={props.searchValue}
+				onChange={props.searchHandler}
+			/>
+		</form>
+	);
 }
 
 export default SearchBar;

@@ -9,6 +9,18 @@ import SearchBar from "./Components/SearchBar";
 class App extends React.Component {
 	state = {
 		planetArray: [],
+		searchValue: "",
+	};
+
+	searchHandler = (e) => {
+		let newPlanetArray = this.state.planetArray.filter((element) =>
+			element.name.toLowerCase().includes(
+				e.target.this.setState({
+					planetArray: newPlanetArray,
+					searchValue: e.target.value,
+				})
+			)
+		);
 	};
 
 	componentDidMount() {
@@ -21,7 +33,10 @@ class App extends React.Component {
 		return (
 			<div>
 				<Header />
-				<SearchBar />
+				<SearchBar
+					searchValue={this.state.searchValue}
+					searchHandler={this.searchHandler}
+				/>
 				<RandomButton />
 				<PlaneteersContainer planetArray={this.state.planetArray} />
 			</div>

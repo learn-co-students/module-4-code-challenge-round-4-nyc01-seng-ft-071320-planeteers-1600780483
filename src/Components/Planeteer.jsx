@@ -11,14 +11,6 @@ class Planeteer extends React.Component {
 		});
 	};
 
-	// usaChangeHandler = (e) => {
-	// 	// e.target.value === true
-	// 		// ? this.setState({ fromUSA: true })
-	// 		// : this.setState({ fromUSA: false });
-	// 	? "USA-based"
-	// 	: "Working overseas"
-	// };
-
 	render() {
 		return (
 			<li className="cards__item">
