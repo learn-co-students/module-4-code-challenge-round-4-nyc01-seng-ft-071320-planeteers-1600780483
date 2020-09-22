@@ -58,3 +58,7 @@ export default App;
 4. fuzzy search bar
       give filteredArray to components to render
 */
+
+/* Stretches
+
+*/
