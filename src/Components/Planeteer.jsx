@@ -2,17 +2,26 @@ import React from 'react';
 
 class Planeteer extends React.Component {
 
+  state={
+    turn:this.props.el.bio
+  }
+
+  turner=()=>{
+    return this.state.turn===this.props.el.bio ? this.setState({turn:this.props.el.quote}) : this.setState({turn:this.props.el.bio})
+  }
   render() {
+    const {name, fromUSA, born, bio, quote, pictureUrl, twitter, id} = this.props.el
+    console.log(this.props, this.props.el.name, name)
     return (
       <li className="cards__item">
         <div className="card">
-          <img src={"RENDER IMAGE"} alt={"RENDER PERSON NAME"} className="card__image" />
+          <img src={pictureUrl} alt={name} className="card__image" onClick={this.turner}/>
           <div className="card__content">
-            <div className="card__title">{"RENDER NAME"}</div>
-            <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+            <div className="card__title">{name}</div>
+            <p className="card__text">{this.state.turn}</p>
             <div className="card__detail">
-              <p>{"RENDER TWITTER HANDLE"}</p>
-              <p>{"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"}</p>
+              <p>{twitter}</p>
+              <p>{fromUSA ? "USA-based":"Working overseas"}</p>
             </div>
           </div>
         </div>
