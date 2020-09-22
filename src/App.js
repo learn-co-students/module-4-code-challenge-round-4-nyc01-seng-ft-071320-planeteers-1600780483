@@ -19,11 +19,30 @@ class App extends React.Component {
     this.setState(()=>({
       searchTerm: e.target.value}))
   }
-  
-  generateArray=()=>{
-    console.log(this.state.containerArray)
-    return this.state.containerArray.filter(planeteer => planeteer.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+
+  filterArray=()=>{
+    let nameFilter = this.state.containerArray.filter(planeteer => planeteer.name.toLowerCase().includes(this.  state.searchTerm.toLowerCase()))
+
+    let bioFilter = this.state.containerArray.filter(planeteer => planeteer.bio.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+
+    let displayArray = nameFilter.concat(bioFilter)
+
+    let unique = displayArray.filter(function (item, index) {
+      return displayArray.indexOf(item)=== index
+    })
+    console.log(nameFilter)
+    console.log(bioFilter)
+    console.log(displayArray)
+    console.log(unique)
+    return unique
   }
+
+  unique =()=>{
+
+  }
+  
+
+
   componentDidMount=() => {
     fetch('http://localhost:4000/planeteers')
       .then(resp=> resp.json())
@@ -41,7 +60,7 @@ class App extends React.Component {
         <Header />
         <SearchBar value={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
         <RandomButton/>
-        <PlaneteersContainer containerArray={this.generateArray()}/>
+        <PlaneteersContainer containerArray={this.filterArray()}/>
       </div>
     );
   }
