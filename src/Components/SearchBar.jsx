@@ -13,10 +13,12 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    // console.log(this.state.searchTerm)
     return (
       <div className="search">
         <input onChange={this.searchHandler} type="text" placeholder="Search" value={this.state.searchTerm} />
+        <br />
+        <label style={{"color": "black"}}>Sort by Age:</label>
+        <input type="checkbox" />
       </div>
     );
   }

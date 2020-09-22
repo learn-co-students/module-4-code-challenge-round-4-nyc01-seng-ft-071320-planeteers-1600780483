@@ -13,18 +13,12 @@ class Planeteer extends React.Component {
   ageRender = () => {
     let d = new Date()
     let n = d.getFullYear()
-    // console.log(n)
     let age = (n - this.props.planeteer.born)
-    // console.log(age)
     return age
   }
 
   render() {
-    // console.log(this.props)
     return (
-      // <li>
-      //   Hello
-      // </li>
       <li className="cards__item">
         <div className="card">
           <img onClick={this.cardTextHandler} src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} className="card__image" />
