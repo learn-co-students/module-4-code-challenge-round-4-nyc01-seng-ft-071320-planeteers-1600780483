@@ -20,17 +20,12 @@ class App extends React.Component {
     .then(data => this.setState({planeteerArray: data}))
   }
 
-  // searchHandler = (searchValue) => {
-  //   this.setState({search: searchValue})
-  //   this.filterPlaneteers()
-  // }
-
-  // buggy bc this.setState is async and its running filter planeteers b4 setState, do something w/ filtered array
+  // this.setState is async and its running filter planeteers b4 setState
   filterPlaneteers = () => {
     return this.state.planeteerArray.filter(ele => ele.name.toLowerCase().includes(this.state.search))
   }
 
-  // it sets state w/ the search value but then re renders. when it rerenders, it renders w/ filterPlaneteers which is still
+  // sets state w/ the searchvalue but then rerenders. when it rerenders, it renders w/ filterPlaneteers which is still
   // empty bc it hasnt been called yet
   searchHandler = (searchValue) => {
     this.setState({search: searchValue}, 
@@ -39,9 +34,6 @@ class App extends React.Component {
   }
   
   render(){
-    console.log("state in render:", this.state.planeteerArray)
-    console.log("search in app", this.state.search)
-    // this.filterPlaneteers();
     return (
       <div>
         <Header />

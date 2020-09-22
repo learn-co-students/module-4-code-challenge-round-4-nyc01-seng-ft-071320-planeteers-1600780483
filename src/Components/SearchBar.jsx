@@ -7,7 +7,6 @@ class SearchBar extends React.Component {
    }
 
    changeHandler = (e) => {
-    // console.log("im changing", e.target.value)
     e.persist();
     this.setState({searchValue: e.target.value})
     this.props.searchHandler(e.target.value)
@@ -15,7 +14,6 @@ class SearchBar extends React.Component {
    }
   
     render() {
-      console.log("state in search bar", this.state)
     return (
       <div className="search">
         <input type="search" placeholder="Search Planeteers" value={this.state.searchValue} onChange={this.changeHandler}/>
