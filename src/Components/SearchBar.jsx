@@ -2,10 +2,21 @@ import React from 'react';
 
 class SearchBar extends React.Component {
 
-  render() {
+   state ={
+     searchValue: ""
+   }
+
+   changeHandler = (e) => {
+    // console.log("im changing", e.target.value)
+    e.persist();
+    this.setState({searchValue: e.target.value})
+    this.props.searchHandler(this.state.searchValue)
+   }
+  
+    render() {
     return (
       <div className="search">
-        <input type="search" placeholder="Search Planeteers"/>
+        <input type="search" placeholder="Search Planeteers" value={this.state.searchValue} onChange={this.changeHandler}/>
       </div>
     );
   }
