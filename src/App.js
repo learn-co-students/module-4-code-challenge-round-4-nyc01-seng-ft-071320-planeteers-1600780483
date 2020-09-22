@@ -50,13 +50,22 @@ class App extends React.Component {
       })
     })
   }
+
+  // checkHandler = (value) => {
+  //   // console.log(value)
+  //   if(value){
+  //     console.log(true)
+  //   } else {
+
+  //   }
+  // }
     
   render(){
     console.log(this.state.term)
     return (
       <div>
         <Header />
-        <SearchBar searchHandler={this.searchHandler} />
+        <SearchBar checkHandler={this.checkHandler} searchHandler={this.searchHandler} />
         <RandomButton post={this.renderNew} />
         <PlaneteersContainer searchTerm={this.state.term} planeteers={this.state.planeteersArr} />
       </div>
