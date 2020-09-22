@@ -13,6 +13,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //! backend opened up on 3000 and frontend opened on 3001
     fetch("http://localhost:3000/planeteers")
     .then(res => res.json())
     .then(data => {
@@ -29,13 +30,34 @@ class App extends React.Component {
     })
   }
 
+  renderNew = (data) => {
+    console.log(data)
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(data)
+    }
+    fetch("http://localhost:3000/planeteers", options)
+    .then(res => res.json())
+    .then(planeteer => {
+      let newArray = [...this.state.planeteersArr, planeteer]
+      this.setState({
+      planeteersArr: newArray.reduce((unique, item) => unique.includes(item) ? unique : [...unique, item], [])
+      })
+    })
+  }
+    
   render(){
     console.log(this.state.term)
     return (
       <div>
         <Header />
         <SearchBar searchHandler={this.searchHandler} />
-        <RandomButton/>
+        <RandomButton post={this.renderNew} />
         <PlaneteersContainer searchTerm={this.state.term} planeteers={this.state.planeteersArr} />
       </div>
     );
