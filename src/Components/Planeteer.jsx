@@ -2,17 +2,25 @@ import React from 'react';
 
 class Planeteer extends React.Component {
 
+  state = {
+    toggle: false
+  }
+
+  clickHandler = () => {
+    this.setState((previousState) => ({toggle: !previousState.toggle}))
+  }
+
   render() {
     return (
       <li className="cards__item">
-        <div className="card">
-          <img src={"RENDER IMAGE"} alt={"RENDER PERSON NAME"} className="card__image" />
+        <div className="card" >
+          <img src={this.props.data.pictureUrl} alt={this.props.data.name} className="card__image" onClick={this.clickHandler}/>
           <div className="card__content">
-            <div className="card__title">{"RENDER NAME"}</div>
-            <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+            <div className="card__title">{this.props.data.name}</div>
+            <p className="card__text">{!this.state.toggle ? this.props.data.bio : this.props.data.quote}</p>
             <div className="card__detail">
-              <p>{"RENDER TWITTER HANDLE"}</p>
-              <p>{"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"}</p>
+              <p>{this.props.data.twitter}</p>
+              <p>{this.props.data.fromUSA ? "USA-based" : "Working Oversees"}</p>
             </div>
           </div>
         </div>
