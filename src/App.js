@@ -11,7 +11,7 @@ class App extends React.Component {
   state = {
     planeteers: [],
     searchValue: '',
-    sorted: true,
+    sorted: false,
   };
 
   searchHandler = (e) => {
@@ -32,27 +32,17 @@ class App extends React.Component {
     );
   };
 
-  sortPlaneteers = (e) => {
-    e.persist();
+  sortPlaneteers = () => {
     let sortArray = [...this.state.planeteers];
     let today = new Date();
     let year = today.getFullYear();
+    return sortArray.sort((a, b) => (year - a.born > year - b.born ? 1 : -1));
+  };
 
-    switch (this.state.sorted) {
-      case true:
-        sortArray.sort((a, b) => (year - a.born > year - b.born ? 1 : -1));
-        this.setState(() => ({
-          planeteers: sortArray,
-          sorted: false,
-        }));
-        break;
-      default:
-        this.setState(() => ({
-          planeteers: sortArray,
-          sorted: true,
-        }));
-        break;
-    }
+  checkHandler = () => {
+    this.setState((previousState) => ({
+      sorted: !previousState.sorted,
+    }));
   };
 
   render() {
@@ -62,10 +52,16 @@ class App extends React.Component {
         <SearchBar
           search={this.searchHandler}
           searchValue={this.state.searchValue}
-          sort={this.sortPlaneteers}
+          sort={this.checkHandler}
         />
         <RandomButton />
-        <PlaneteersContainer planeteers={this.filteredPlaneteers()} />
+        <PlaneteersContainer
+          planeteers={
+            this.state.sorted
+              ? this.sortPlaneteers()
+              : this.filteredPlaneteers()
+          }
+        />
       </div>
     );
   }
