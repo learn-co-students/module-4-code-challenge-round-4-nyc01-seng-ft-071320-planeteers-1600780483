@@ -56,7 +56,6 @@ class RandomButton extends React.Component {
       </div>
     );
   }
-
 }
 
 export default RandomButton;
