@@ -1,15 +1,22 @@
 import React from 'react';
 import Planeteer from './Planeteer'
 
-const PlaneteersContainer = () => {
+class PlaneteersContainer extends React.Component{
 
-  return (
-    <ul className="cards">
-      {
-        "Render Planeteers here"
-      }
-    </ul>
-  )
+  renderPlaneteers = () =>{
+    return this.props.planeteers.map(ele => <Planeteer key={ele.id} planeteer={ele} />)
+  }
+
+  render(){
+    return (
+      <ul className="cards">
+        {
+          this.renderPlaneteers()
+        }
+      </ul>
+    )
+  }
+
 
 };
 
