@@ -23,7 +23,7 @@ class App extends React.Component {
     })
   }
 
-  searchHandler = (e) => {
+  handleSearch = (e) => {
     this.setState({searchValue: e.target.value})
   }
 
@@ -60,7 +60,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <SearchBar searchHandler={this.searchHandler} value={this.state.searchValue} toggleSort={this.toggleSort} />
+        <SearchBar handleSearch={this.handleSearch} value={this.state.searchValue} toggleSort={this.toggleSort} />
         <RandomButton addRandom={this.addRandom} />
         <PlaneteersContainer planeteers={this.filterPlaneteers()} />
       </div>

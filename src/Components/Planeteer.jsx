@@ -18,7 +18,7 @@ class Planeteer extends React.Component {
   render() {
     this.findAge()
     return (
-      <li className="cards__item">
+      <li className="cards__item" onClick={this.props.showModal}>
         <div className="card">
           <img src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} className="card__image" onClick={this.clickHandler} />
           <div className="card__content">
