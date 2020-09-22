@@ -1,16 +1,9 @@
-import React from 'react';
-import Planeteer from './Planeteer'
+import React from "react";
+import Planeteer from "./Planeteer";
 
-const PlaneteersContainer = () => {
-
-  return (
-    <ul className="cards">
-      {
-        "Render Planeteers here"
-      }
-    </ul>
-  )
-
+const PlaneteersContainer = (props) => {
+  const pArrayMap = props.pArray.map((ele) => <Planeteer planeteer={ele} />);
+  return <ul className="cards">{pArrayMap}</ul>;
 };
 
 export default PlaneteersContainer;
