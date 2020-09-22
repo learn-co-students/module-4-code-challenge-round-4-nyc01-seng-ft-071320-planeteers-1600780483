@@ -31,6 +31,35 @@ class App extends React.Component {
     }))
   }
 
+  addPlaneteer = (planeteerObj) => {
+    let newArray = this.state.planeteers
+    if(!newArray.find(planeteer => planeteer.name === planeteerObj.name)){
+      planeteerObj.id = this.state.planeteers.length + 1
+      newArray.push(planeteerObj)
+      console.log(newArray)
+      this.setState(()=>({
+        planateers: newArray
+      }))
+      
+      const options = {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'accept': 'application/json'
+        },
+        body: JSON.stringify(planeteerObj)
+      }
+  
+      fetch('http://localhost:3001/planeteers', options)
+        .then(response => response.json())
+        .then(console.log)
+
+    } else {
+      console.log("That Planeteer is already rendered.")
+    }
+
+  }
+
   render(){
 
     console.log(this.state.planeteers)
@@ -39,7 +68,7 @@ class App extends React.Component {
       <div>
         <Header />
         <SearchBar searchHandler={this.filterPlaneteersByNameOrBio} />
-        <RandomButton/>
+        <RandomButton addPlaneteer={this.addPlaneteer} />
         <PlaneteersContainer planeteers={this.state.filteredArray ? this.state.filteredArray : this.state.planeteers} />
       </div>
     );
@@ -60,5 +89,6 @@ export default App;
 */
 
 /* Stretches
-
+1. add ages
+2. add a random planeteer and persist it to the db
 */

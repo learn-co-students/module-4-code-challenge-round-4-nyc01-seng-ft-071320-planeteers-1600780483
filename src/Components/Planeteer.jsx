@@ -28,6 +28,7 @@ class Planeteer extends React.Component {
           <div className="card__content">
             <div className="card__title">{this.props.name}</div>
             <p><strong>{this.getAge()}</strong> years old</p>
+            <p className="card_text">{this.state.renderQuote ? "Quote:" : "Bio:"}</p>
             <p className="card__text">{this.state.renderQuote ? this.props.quote : this.props.bio}</p>
             <div className="card__detail">
               <p>{this.props.twitter}</p>
