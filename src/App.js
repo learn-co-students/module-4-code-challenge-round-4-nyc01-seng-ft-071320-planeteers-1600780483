@@ -40,7 +40,7 @@ class App extends React.Component {
     if (this.state.sortChecked) {
       return this.filteredPlaneteers().sort((a, b) => b.born - a.born)
     }
-    return this.filteredPlaneteers()
+    return this.filteredPlaneteers().sort((a, b) => a.id - b.id)
   }
 
   addRandomPlaneteer = planeteerObj => {
