@@ -3,7 +3,8 @@ import React from 'react';
 class Planeteer extends React.Component {
 
   state = {
-    toggle: false
+    toggle: false,
+    year: new Date().getFullYear()
   }
 
   clickHandler = () => {
@@ -11,6 +12,7 @@ class Planeteer extends React.Component {
   }
 
   render() {
+    console.log(this.state.year)
     return (
       <li className="cards__item">
         <div className="card" >
@@ -20,6 +22,7 @@ class Planeteer extends React.Component {
             <p className="card__text">{!this.state.toggle ? this.props.data.bio : this.props.data.quote}</p>
             <div className="card__detail">
               <p>{this.props.data.twitter}</p>
+              <p>Age: {this.state.year - this.props.data.born}</p>
               <p>{this.props.data.fromUSA ? "USA-based" : "Working Oversees"}</p>
             </div>
           </div>

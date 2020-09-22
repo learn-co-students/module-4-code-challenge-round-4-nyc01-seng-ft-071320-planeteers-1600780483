@@ -26,17 +26,39 @@ class App extends React.Component {
     this.setState(({[e.target.name]: e.target.value}))
   }
 
+  addPlaneteer = (obj) => {
+    fetch("http://localhost:4000/planeteers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: obj.name,
+        fromUSA: obj.fromUSA,
+        born: obj.born,
+        bio: obj.bio,
+        quote: obj.quote,
+        pictureUrl: obj.pictureUrl,
+        twitter: obj.twitter
+      })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      this.setState((previousState) => ({array: [...previousState.array, data]}))
+    })
+  }
+
   filteredResult = () => {
     return this.state.array.filter(el => el.name.toLowerCase().includes(this.state.search.toLowerCase()) || el.bio.toLowerCase().includes(this.state.search.toLowerCase()))
   }
 
   render(){
-    console.log(this.state.search)
     return (
       <div>
         <Header />
         <SearchBar value={this.state.search} changeHandler={this.changeHandler}/>
-        <RandomButton/>
+        <RandomButton clickHandler={this.addPlaneteer}/>
         <PlaneteersContainer data={this.filteredResult()}/>
       </div>
     );
