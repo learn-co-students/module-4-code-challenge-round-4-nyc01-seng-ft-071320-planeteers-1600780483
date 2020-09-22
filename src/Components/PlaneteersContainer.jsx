@@ -1,16 +1,34 @@
 import React from 'react';
 import Planeteer from './Planeteer'
 
-const PlaneteersContainer = () => {
+class PlaneteersContainer extends React.Component{
 
-  return (
-    <ul className="cards">
-      {
-        "Render Planeteers here"
-      }
-    </ul>
-  )
+  state = {
+    planeteersArray: [],
+  }
 
-};
+
+
+  componentDidMount(){
+    fetch("http://localhost:3000/planeteers")
+    .then(resp => resp.json())
+    .then(planeteers => this.setState({planeteersArray: planeteers}))
+  }
+
+  planeteers = () => {
+    return this.state.planeteersArray.map(planeteerObj => <Planeteer planeteerObj={planeteerObj}/>)
+  }
+
+  render(){
+    
+    return (
+      <ul className="cards">
+        {this.planeteers()}
+      </ul>
+    )
+  
+  }
+
+  }
 
 export default PlaneteersContainer;
