@@ -8,23 +8,29 @@ class Planeteer extends React.Component {
     value: 0
   }
 
-  clickHandler = () => {
-    if(this.state.value === 0){
+  clickHandler = (e) => {
+    fetch("http://localhost:4000/planeteers/" + e.target.id)
+    .then(resp => resp.json())
+    .then(data => {if(this.state.value === 0){
       this.setState({
+        quote: data.quote,
         value: 1
       })
     } else {
       this.setState({
+        bio: data.bio,
         value: 0
       })
-    }
+    }})
   }
+
+ 
 
   render() {
     return (
       <li className="cards__item">
         <div className="card">
-          <img src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} onClick={this.clickHandler} className="card__image" />
+          <img id = {this.props.planeteer.id} src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} onClick={this.clickHandler} className="card__image" />
           <div className="card__content">
             <div className="card__title">{this.props.planeteer.name}</div>
             <p className="card__text">{this.state.value === 0 ? this.state.bio : this.state.quote}</p>

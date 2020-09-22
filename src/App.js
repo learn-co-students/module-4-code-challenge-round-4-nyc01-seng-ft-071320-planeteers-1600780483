@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   searchHandler = (keywords) => {
-    let filtered = this.state.planeteers.filter(planeteer => planeteer.bio.includes(keywords))
+    let filtered = this.state.planeteers.filter(planeteer => planeteer.bio.includes(keywords) || planeteer.name.includes(keywords))
     this.setState({
       filteredPlaneteers: filtered
     })
