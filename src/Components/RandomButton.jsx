@@ -42,9 +42,27 @@ const arrayOfPlaneteers = [
 
 class RandomButton extends React.Component {
 
+  createPlaneteer=(obj)=>{
+    let baseUrl = 'http://localhost:4000/planeteers/'
+    let options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify(obj)
+  }
+    fetch(baseUrl, options)
+    .then(resp => resp.json())
+    .then(data => console.log(data))
+  }
+
+
+
   handleClick = () => {
     const randomPlaneteer = arrayOfPlaneteers[Math.floor(Math.random() * arrayOfPlaneteers.length)]
     console.log(randomPlaneteer);
+    this.createPlaneteer(randomPlaneteer)
   }
 
   render() {
