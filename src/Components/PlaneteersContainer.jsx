@@ -4,7 +4,7 @@ import Planeteer from './Planeteer'
 const PlaneteersContainer = (props) => {
 
   const renderPeople = () => {
-    return props.people.map(personObj => <Planeteer key={personObj.id} person={personObj} />)
+    return props.people.map(personObj => <Planeteer remove={props.remove} key={personObj.id} person={personObj} />)
   }
 
   return (

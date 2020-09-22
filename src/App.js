@@ -57,14 +57,28 @@ class App extends React.Component {
     })
   }
 
+  removePerson = (personObj) => {
+    const configObj = {
+      method: 'Delete', 
+      headers: {'Content-Type': 'application/json', 'Accepts': 'application/json'}
+    }
+    fetch(`http://localhost:4000/planeteers/${personObj.id}`, configObj)
+    .then(resp=>resp.json())
+    .then(data => {
+      const newArray = this.state.peopleArray.filter(person => person.id !== personObj.id)   
+      if (!data.id){
+        this.setState(()=>({
+          peopleArray: newArray
+        }))
+      }
+    })
+  }
+
   sortHandler = () => {
     this.setState(()=>({
       checked: !this.state.checked
     }))
   }
-
-
-
 
   render(){
     return (
@@ -72,7 +86,7 @@ class App extends React.Component {
         <Header />
         <SearchBar checked={this.state.checked} sort={this.sortHandler} searchHandler={this.searchHandler} searchValue={this.state.search} />
         <RandomButton newPerson={this.newPerson} />
-        <PlaneteersContainer people={this.sort()}/>
+        <PlaneteersContainer remove={this.removePerson} people={this.sort()}/>
       </div>
     );
   }

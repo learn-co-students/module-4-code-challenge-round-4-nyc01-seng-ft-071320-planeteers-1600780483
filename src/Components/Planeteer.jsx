@@ -30,6 +30,7 @@ class Planeteer extends React.Component {
               <p>{this.props.person.twitter}</p>
               <p>{this.props.person.fromUSA ? "USA-BASED" : "WORKING OVERSEAS"}</p>
               <p>Age: {this.getPersonAge()}</p>
+              <button onClick={()=> this.props.remove(this.props.person)}>Remove Planeteer</button>
             </div>
           </div>
         </div>
