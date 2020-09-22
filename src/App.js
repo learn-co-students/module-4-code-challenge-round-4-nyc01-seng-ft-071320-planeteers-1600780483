@@ -10,7 +10,8 @@ class App extends React.Component {
 
   state = {
     peopleArray: [],
-    search: ""
+    search: "", 
+    checked: false
   }
 
   componentDidMount(){
@@ -29,10 +30,39 @@ class App extends React.Component {
       [e.target.name]: e.target.value
     }))
   }
-
+  
   searchFilter = () => {
     return this.state.peopleArray.filter(person => person.name.toLocaleLowerCase().includes(this.state.search.toLocaleLowerCase()) || person.bio.toLocaleLowerCase().includes(this.state.search.toLocaleLowerCase()))
   }
+  sort = () => {
+    if (this.state.checked){
+      return this.searchFilter().sort((a, b) => b.born - a.born)
+    } else {
+      return this.searchFilter().sort((a, b) => a.id - b.id)
+    }  
+  }
+  
+  newPerson = (newPersonObj) => {
+    const configObj = {
+      method: 'POST', 
+      headers: {'Content-Type': 'application/json', 'Accepts': 'application/json'},
+      body: JSON.stringify(newPersonObj)
+    }
+    fetch('http://localhost:4000/planeteers', configObj)
+    .then(resp=>resp.json())
+    .then(returnedPerson => {
+      this.setState(()=>({
+        peopleArray: [...this.state.peopleArray, returnedPerson]
+      }))
+    })
+  }
+
+  sortHandler = () => {
+    this.setState(()=>({
+      checked: !this.state.checked
+    }))
+  }
+
 
 
 
@@ -40,9 +70,9 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <SearchBar searchHandler={this.searchHandler} searchValue={this.state.search} />
-        <RandomButton/>
-        <PlaneteersContainer people={this.searchFilter()}/>
+        <SearchBar checked={this.state.checked} sort={this.sortHandler} searchHandler={this.searchHandler} searchValue={this.state.search} />
+        <RandomButton newPerson={this.newPerson} />
+        <PlaneteersContainer people={this.sort()}/>
       </div>
     );
   }

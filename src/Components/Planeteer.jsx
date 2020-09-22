@@ -12,6 +12,12 @@ class Planeteer extends React.Component {
     }))
   }
 
+  getPersonAge = () => {
+    const d = new Date()
+    const year = d.getFullYear()
+    return (year - this.props.person.born)
+  }
+
   render() {
     return (
       <li className="cards__item">
@@ -22,7 +28,8 @@ class Planeteer extends React.Component {
             <p className="card__text">{this.state.clicked ? this.props.person.quote : this.props.person.bio}</p>
             <div className="card__detail">
               <p>{this.props.person.twitter}</p>
-              <p>{this.props.person.fromUSA ? "USA-based" : "Working overseas"}</p>
+              <p>{this.props.person.fromUSA ? "USA-BASED" : "WORKING OVERSEAS"}</p>
+              <p>Age: {this.getPersonAge()}</p>
             </div>
           </div>
         </div>
