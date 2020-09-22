@@ -31,12 +31,29 @@ class App extends React.Component {
     return this.state.planeteers
   }
 
+  addRandomPlaneteer = planeteerObj => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json"
+      },
+      body: JSON.stringify(planeteerObj)
+    }
+    fetch("http://localhost:4000/planeteers", options)
+    .then(res => res.json())
+    .then(planeteer => {
+      const newPlaneteers = [...this.state.planeteers, planeteer]
+      this.setState({planeteers: newPlaneteers})
+    })
+  }
+
   render(){
     return (
       <div>
         <Header />
         <SearchBar searchTerm={this.state.searchTerm} changeHandler={this.changeHandler}/>
-        <RandomButton/>
+        <RandomButton clickHandler={this.addRandomPlaneteer}/>
         <PlaneteersContainer planeteers={this.filteredPlaneteers()}/>
       </div>
     );
