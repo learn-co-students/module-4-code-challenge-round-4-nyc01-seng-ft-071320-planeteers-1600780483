@@ -21,6 +21,14 @@ class Planeteer extends React.Component {
     })
   }
 
+  renderLocation = () => {
+    if(this.props.planeteer.fromUSA){
+      return <p>USA Based</p>
+    } else {
+      return <p>Working overseas</p>
+    }
+  }
+
   render() {
     return (
       <li className="cards__item">
@@ -31,7 +39,7 @@ class Planeteer extends React.Component {
             {this.renderBio()}
             <div className="card__detail">
               <p>{this.props.planeteer.twitter}</p>
-              <p>{"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"}</p>
+              {this.renderLocation()}
             </div>
           </div>
         </div>
