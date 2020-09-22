@@ -31,7 +31,13 @@ class App extends React.Component {
 
   filteredPlaneteers = () => {
     if (this.state.searchTerm) {
-      return this.state.planeteers.filter(planeteer => planeteer.name.toLowerCase().includes(this.state.searchTerm))
+      return this.state.planeteers.filter(planeteer => {
+        if (planeteer.name.toLowerCase().includes(this.state.searchTerm) || planeteer.bio.toLowerCase().includes(this.state.searchTerm)) {
+          return true
+        } else {
+          return false
+        }
+      })
     }
     return this.state.planeteers
   }
