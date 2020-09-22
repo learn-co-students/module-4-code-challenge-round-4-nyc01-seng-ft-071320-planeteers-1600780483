@@ -22,7 +22,9 @@ class App extends React.Component {
     .then(data => (this.setState({planeteers: data})))
   }
 
-  //create the clickHandler to render the quote instea of the bio
+  //create the clickHandler to render the quote instead of the bio
+    //maybe instead of having the bio/quote toggler in the card, I need it in the main app.js
+
   clickHandler = (planeteer) => {
     console.log("clicked")
     // let display = this.state.showBio
@@ -43,7 +45,7 @@ class App extends React.Component {
     this.setState(() => ({
       searchTerm: e.target.value
     }))
-  }
+  }  
 
   render(){
     // console.log(this.state)
@@ -52,7 +54,7 @@ class App extends React.Component {
         <Header />
         <SearchBar value={this.state.searchTerm} changeHandler={this.changeHandler}/>
         <RandomButton/>
-        <PlaneteersContainer planeteers={this.state.planeteers} clickHandler={this.clickHandler} searchTerm={this.state.searchTerm}/>
+        <PlaneteersContainer planeteers={this.state.planeteers} clickHandler={this.clickHandler} searchTerm={this.state.searchTerm} showBio={this.state.showBio}/>
       </div>
     );
   }

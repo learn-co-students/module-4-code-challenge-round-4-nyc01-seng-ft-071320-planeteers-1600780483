@@ -9,6 +9,20 @@ class Planeteer extends React.Component {
       return "Working Oversees"
     }
   }
+
+  //what if I create another function that will conditionally render
+  // the bio or quote, depending on if I create a state-variable "showBio: true"
+    // if it's true, render the bio... if not, render the quote
+      //toggle the "showBio" between true and false with every click
+
+  toggleInfo = () => {
+    if (this.props.showBio) {
+      return this.props.planeteer.bio
+    } else {
+      return this.props.planeteer.quote
+    }
+  }
+
   render() {
     return (
       <li className="cards__item">
