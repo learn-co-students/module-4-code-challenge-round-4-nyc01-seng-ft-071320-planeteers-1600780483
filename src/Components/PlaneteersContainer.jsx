@@ -5,12 +5,16 @@ import Planeteer from './Planeteer'
 const PlaneteersContainer = (props) => { 
 
   const planeteers = () => {
-    return props.planeteers.map(planeteer => <Planeteer planeteer={planeteer} showModal={showModal}/>)
+    return props.planeteers.map(planeteer => <Planeteer planeteer={planeteer} />)
   }
 
-  const showModal = () => {
-    document.getElementById('myModal').style.display = "block"
-  }
+  // const showModal = () => {
+  //   document.getElementById('myModal').style.display = "block"
+  // }
+
+  // const closeModal = () => {
+  //   document.getElementById('myModal').style.display = "none"
+  // }
 
   return (
     <>
