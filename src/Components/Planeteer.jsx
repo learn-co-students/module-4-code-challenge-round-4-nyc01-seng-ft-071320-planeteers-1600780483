@@ -2,17 +2,30 @@ import React from 'react';
 
 class Planeteer extends React.Component {
 
+  state = {
+    clicked: false
+  }
+
+  cardTextHandler = (e) => {
+    this.setState({ clicked: !this.state.clicked})
+  }
+
   render() {
+    // console.log(this.props)
     return (
+      // <li>
+      //   Hello
+      // </li>
       <li className="cards__item">
         <div className="card">
-          <img src={"RENDER IMAGE"} alt={"RENDER PERSON NAME"} className="card__image" />
+          <img onClick={this.cardTextHandler} src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} className="card__image" />
           <div className="card__content">
-            <div className="card__title">{"RENDER NAME"}</div>
-            <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+            <div className="card__title">{this.props.planeteer.name}</div>
+    {this.state.clicked ? <p className="card__text">{this.props.planeteer.quote}</p> : <p className="card__text">{this.props.planeteer.bio}</p>}
             <div className="card__detail">
-              <p>{"RENDER TWITTER HANDLE"}</p>
-              <p>{"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"}</p>
+              <p>{this.props.planeteer.twitter}</p>
+              <br />
+              {this.props.planeteer.fromUSA ? <p>USA-based</p> : <p>Working overseas</p>}
             </div>
           </div>
         </div>
