@@ -21,6 +21,10 @@ state = {
     return this.state.charArray.find(character => character.name === this.props.searchInput)
   }
 
+  foundChar = () =>{
+    
+  }
+
 render =() =>{
   return (
     <ul className="cards">
