@@ -53,11 +53,15 @@ class App extends React.Component {
     return this.state.array.filter(el => el.name.toLowerCase().includes(this.state.search.toLowerCase()) || el.bio.toLowerCase().includes(this.state.search.toLowerCase()))
   }
 
+  sortHandler = () => {
+    console.log('i am here')
+  }
+
   render(){
     return (
       <div>
         <Header />
-        <SearchBar value={this.state.search} changeHandler={this.changeHandler}/>
+        <SearchBar value={this.state.search} changeHandler={this.changeHandler} sortHandler={this.sortHandler}/>
         <RandomButton clickHandler={this.addPlaneteer}/>
         <PlaneteersContainer data={this.filteredResult()}/>
       </div>
