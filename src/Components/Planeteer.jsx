@@ -3,8 +3,6 @@ import React from 'react';
 class Planeteer extends React.Component {
 
   state = {
-    bio: this.props.planeteer.bio,
-    quote: this.props.planeteer.quote,
     value: 0
   }
 
@@ -13,12 +11,10 @@ class Planeteer extends React.Component {
     .then(resp => resp.json())
     .then(data => {if(this.state.value === 0){
       this.setState({
-        quote: data.quote,
         value: 1
       })
     } else {
       this.setState({
-        bio: data.bio,
         value: 0
       })
     }})
@@ -33,7 +29,7 @@ class Planeteer extends React.Component {
           <img id = {this.props.planeteer.id} src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} onClick={this.clickHandler} className="card__image" />
           <div className="card__content">
             <div className="card__title">{this.props.planeteer.name}</div>
-            <p className="card__text">{this.state.value === 0 ? this.state.bio : this.state.quote}</p>
+            <p className="card__text">{this.state.value === 0 ? this.props.planeteer.bio : this.props.planeteer.quote}</p>
             <div className="card__detail">
               <p>{this.props.planeteer.twitter}</p>
               <p>{this.props.planeteer.fromUSA ? "USA-based" : "Working overseas"}</p>
