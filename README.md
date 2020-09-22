@@ -31,8 +31,8 @@ All of the code to style the page has been written for you, meaning that you sho
 
 As a user, I should be able to:
 
-- See list of planeteers on the page, using the `Planeteer` component. The `Planeteer` component should display the planeteer's image, name, bio, Twitter handle, and conditionally render where they are based. If they are from the USA, the component should say "USA-based", otherwise it should say "Working overseas".
-- Click on the image of the planeteer in the `Planeteer` component and see the quote for that planeteer in place of the bio. If I click on the image again, the quote should again be replaced with the bio. If I click on another planeteer's image, it toggles that planeteer's bio independent of any other planeteer's.
+<!-- - See list of planeteers on the page, using the `Planeteer` component. The `Planeteer` component should display the planeteer's image, name, bio, Twitter handle, and conditionally render where they are based. If they are from the USA, the component should say "USA-based", otherwise it should say "Working overseas". -->
+<!-- - Click on the image of the planeteer in the `Planeteer` component and see the quote for that planeteer in place of the bio. If I click on the image again, the quote should again be replaced with the bio. If I click on another planeteer's image, it toggles that planeteer's bio independent of any other planeteer's. -->
 - Type in the `SearchBar` component and see the list of planeteers whose name or bio match the text in the search bar. If there's no text in the search bar, all the planeteers should be rendered.
 
 ![Planeteers core deliverables](public/planeteers-core-deliverables.gif)
