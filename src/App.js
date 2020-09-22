@@ -23,20 +23,35 @@ class App extends React.Component {
 
   filteredPlaneteers = () => {
     let filteredArr = [...this.state.planeteers];
-    return filteredArr.filter(
-      (planet) =>
-        planet.name
-          .toLowerCase()
-          .includes(this.state.searchValue.toLowerCase()) ||
-        planet.bio.toLowerCase().includes(this.state.searchValue.toLowerCase())
-    );
-  };
 
-  sortPlaneteers = () => {
     let sortArray = [...this.state.planeteers];
     let today = new Date();
     let year = today.getFullYear();
-    return sortArray.sort((a, b) => (year - a.born > year - b.born ? 1 : -1));
+    sortArray.sort((a, b) => (year - a.born > year - b.born ? 1 : -1));
+
+    switch (this.state.sorted) {
+      case true:
+        return sortArray.filter(
+          (planet) =>
+            planet.name
+              .toLowerCase()
+              .includes(this.state.searchValue.toLowerCase()) ||
+            planet.bio
+              .toLowerCase()
+              .includes(this.state.searchValue.toLowerCase())
+        );
+
+      default:
+        return filteredArr.filter(
+          (planet) =>
+            planet.name
+              .toLowerCase()
+              .includes(this.state.searchValue.toLowerCase()) ||
+            planet.bio
+              .toLowerCase()
+              .includes(this.state.searchValue.toLowerCase())
+        );
+    }
   };
 
   checkHandler = () => {
@@ -46,6 +61,7 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.filteredPlaneteers());
     return (
       <div>
         <Header />
@@ -55,13 +71,7 @@ class App extends React.Component {
           sort={this.checkHandler}
         />
         <RandomButton />
-        <PlaneteersContainer
-          planeteers={
-            this.state.sorted
-              ? this.sortPlaneteers()
-              : this.filteredPlaneteers()
-          }
-        />
+        <PlaneteersContainer planeteers={this.filteredPlaneteers()} />
       </div>
     );
   }
