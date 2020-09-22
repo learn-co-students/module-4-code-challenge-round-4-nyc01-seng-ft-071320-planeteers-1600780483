@@ -10,7 +10,13 @@ class Planeteer extends React.Component {
     this.setState(previousState => ({quote: !previousState.quote}))
   }
 
+  findAge = () => {
+    let year = new Date().getFullYear()
+    return year - this.props.planeteer.born
+  }
+
   render() {
+    this.findAge()
     return (
       <li className="cards__item">
         <div className="card">
@@ -21,6 +27,7 @@ class Planeteer extends React.Component {
             <div className="card__detail">
               <p>{this.props.planeteer.twitter}</p>
               <p>{this.props.fromUSA ? "USA Based" : "Working Overseas"}</p>
+              <p>Age: {this.findAge()}</p>
             </div>
           </div>
         </div>
