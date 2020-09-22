@@ -24,19 +24,19 @@ class App extends React.Component {
     let newArray = this.state.planeteers
     let search = this.state.searchTerm    
     let filtered = newArray.filter(kid => kid.name.toLowerCase().includes(search.toLowerCase()))
-    return filtered
-    // if (this.state.checked===true){
-    //   let sort = filtered
-    //   sort = filtered.sort((a, b) => (a.born > a.born) ? 1 : -1)
-    //   console.log(sort)
-    //   return filtered
-    // }else{return filtered}
+    // return filtered
+    if (this.state.checked===true){
+      let sort = filtered
+      sort = filtered.sort((a, b) => (a.born > b.born) ? 1 : -1)
+      console.log(sort)
+      return sort
+    }else{return filtered}
     
   }
 
   ageSort = (check) => {
     console.log(check)
-    // this.setState({checked: check})
+    this.setState({checked: check})
   }
 
   createKid = (kidObj) => {
