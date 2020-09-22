@@ -17,6 +17,22 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => this.setState({ planeteerArray: data }));
   }
+  randomHero = (hero) => {
+    fetch(`http://localhost:3006/planeteers/`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        accepts: "application/json",
+      },
+      body: JSON.stringify(hero),
+    })
+      .then((res) => res.json())
+      .then((newHero) =>
+        this.setState({
+          planeteerArray: [newHero, ...this.state.planeteerArray],
+        })
+      );
+  };
   search = (searchValue) => {
     this.setState({ searchValue: searchValue });
     // console.log("SEARCH VALUE:", searchValue);
@@ -38,7 +54,7 @@ class App extends React.Component {
       <div>
         <Header />
         <SearchBar value={this.state.value} search={this.search} />
-        <RandomButton />
+        <RandomButton random={this.randomHero} />
         <PlaneteersContainer pArray={pArray} />
       </div>
     );

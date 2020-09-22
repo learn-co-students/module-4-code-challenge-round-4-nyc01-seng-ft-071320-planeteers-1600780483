@@ -13,6 +13,7 @@ class Planeteer extends React.Component {
       this.setState({ text: this.props.planeteer.quote });
     } else this.setState({ text: this.props.planeteer.bio });
   };
+
   render() {
     return (
       <li className="cards__item">
@@ -28,8 +29,9 @@ class Planeteer extends React.Component {
               {this.state.text}
             </p>
             <div className="card__detail">
-              <p>{this.props.planeteer.twitter}</p>
-              <p>{this.props.planeteer.fromUSA ? "USA" : "OVER SEAS"}</p>
+              AGE: {2020 - parseInt(this.props.planeteer.born)}
+              TWITTER: {this.props.planeteer.twitter}
+              LOCATION: {this.props.planeteer.fromUSA ? "USA" : "OVER SEAS"}
             </div>
           </div>
         </div>
