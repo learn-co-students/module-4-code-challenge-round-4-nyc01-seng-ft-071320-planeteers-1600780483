@@ -36,7 +36,19 @@ class App extends React.Component {
   random = (obj) => {
     console.log("In App, random function: ", obj)
     let newArr = [obj, ...this.state.planeteers]
-    this.setState({ planeteers: newArr })
+    const options = {
+      "method": "POST", 
+      "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+    body: JSON.stringify(obj)
+    }
+    fetch("http://localhost:4000/planeteers/", options)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({ planeteers: newArr })
+    })
   }
 
   sort = (byAge) => {
