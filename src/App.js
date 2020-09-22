@@ -11,6 +11,7 @@ class App extends React.Component {
   state = {
     planeteers: [],
     searchValue: '',
+    sorted: true,
   };
 
   searchHandler = (e) => {
@@ -18,7 +19,6 @@ class App extends React.Component {
     this.setState(() => ({
       searchValue: e.target.value,
     }));
-    console.log(this.state.searchValue);
   };
 
   filteredPlaneteers = () => {
@@ -32,6 +32,29 @@ class App extends React.Component {
     );
   };
 
+  sortPlaneteers = (e) => {
+    e.persist();
+    let sortArray = [...this.state.planeteers];
+    let today = new Date();
+    let year = today.getFullYear();
+
+    switch (this.state.sorted) {
+      case true:
+        sortArray.sort((a, b) => (year - a.born > year - b.born ? 1 : -1));
+        this.setState(() => ({
+          planeteers: sortArray,
+          sorted: false,
+        }));
+        break;
+      default:
+        this.setState(() => ({
+          planeteers: sortArray,
+          sorted: true,
+        }));
+        break;
+    }
+  };
+
   render() {
     return (
       <div>
@@ -39,6 +62,7 @@ class App extends React.Component {
         <SearchBar
           search={this.searchHandler}
           searchValue={this.state.searchValue}
+          sort={this.sortPlaneteers}
         />
         <RandomButton />
         <PlaneteersContainer planeteers={this.filteredPlaneteers()} />

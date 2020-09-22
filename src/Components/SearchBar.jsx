@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SearchBar(props) {
-  const { search, searchValue } = props;
+  const { search, searchValue, sort } = props;
   return (
     <div className='search'>
       <label>Search</label>
@@ -12,6 +12,8 @@ function SearchBar(props) {
         value={searchValue}
         onChange={search}
       />
+      <label>Sort</label>
+      <input type='checkbox' onClick={sort} />
     </div>
   );
 }
