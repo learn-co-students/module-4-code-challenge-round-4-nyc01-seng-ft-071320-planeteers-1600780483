@@ -32,7 +32,6 @@ class PlaneteersContainer extends React.Component {
       </ul>
     )
   }
-  
 };
 
 export default PlaneteersContainer;

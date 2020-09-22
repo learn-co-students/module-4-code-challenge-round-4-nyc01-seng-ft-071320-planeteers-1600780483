@@ -6,7 +6,7 @@ const SearchBar =(props)=> {
     // console.log(this.props.search)
     return (
       <div className="search">
-        <input type='text' placeholder='by name or bio' value={props.search} onChange={props.changer}/>
+        <input type='text' placeholder='Search by name or bio' value={props.search} onChange={props.changer}/>
       </div>
     );
   // }
