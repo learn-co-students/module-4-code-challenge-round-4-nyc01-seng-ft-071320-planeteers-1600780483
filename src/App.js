@@ -76,7 +76,7 @@ class App extends React.Component {
     }
   }
 
-  compare = (a, b) => {
+  compareAge = (a, b) => {
     const ageA = a.born
     const ageB = b.born
   
@@ -89,11 +89,24 @@ class App extends React.Component {
     return comparison;
   }
 
+  compareId = (a, b) => {
+    const idA = a.id
+    const idB = b.id
+  
+    let comparison = 0;
+    if (idA > idB) {
+      comparison = 1;
+    } else if (idA < idB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
   filter = (data) => {
     if (this.state.filter) {
-      return data.sort(this.compare)
+      return data.sort(this.compareAge)
     } else {
-      return data
+      return data.sort(this.compareId)
     }
   }
 
