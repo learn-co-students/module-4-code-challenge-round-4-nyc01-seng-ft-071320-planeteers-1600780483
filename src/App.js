@@ -9,7 +9,8 @@ import SearchBar from './Components/SearchBar'
 class App extends React.Component {
 
   state = {
-    planeteers: []
+    planeteers: [],
+    searchTerm: ""
   }
 
   componentDidMount() {
@@ -20,13 +21,24 @@ class App extends React.Component {
     })
   }
 
+  changeHandler = e => {
+    this.setState({searchTerm: e.target.value.toLowerCase()})
+  }
+
+  filteredPlaneteers = () => {
+    if (this.state.searchTerm) {
+      return this.state.planeteers.filter(planeteer => planeteer.name.toLowerCase().includes(this.state.searchTerm))
+    }
+    return this.state.planeteers
+  }
+
   render(){
     return (
       <div>
         <Header />
-        <SearchBar />
+        <SearchBar searchTerm={this.state.searchTerm} changeHandler={this.changeHandler}/>
         <RandomButton/>
-        <PlaneteersContainer planeteers={this.state.planeteers}/>
+        <PlaneteersContainer planeteers={this.filteredPlaneteers()}/>
       </div>
     );
   }
