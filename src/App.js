@@ -22,26 +22,12 @@ class App extends React.Component {
 
   filterArray=()=>{
     let nameFilter = this.state.containerArray.filter(planeteer => planeteer.name.toLowerCase().includes(this.  state.searchTerm.toLowerCase()))
-
     let bioFilter = this.state.containerArray.filter(planeteer => planeteer.bio.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-
     let displayArray = nameFilter.concat(bioFilter)
-
-    let unique = displayArray.filter(function (item, index) {
-      return displayArray.indexOf(item)=== index
-    })
-    console.log(nameFilter)
-    console.log(bioFilter)
-    console.log(displayArray)
-    console.log(unique)
-    return unique
+    let unique = displayArray.filter(function (item, index){
+      return displayArray.indexOf(item)=== index})
+     return unique
   }
-
-  unique =()=>{
-
-  }
-  
-
 
   componentDidMount=() => {
     fetch('http://localhost:4000/planeteers')
@@ -51,8 +37,6 @@ class App extends React.Component {
         } 
       )
   }
-
-  
 
   render(){
     return (
@@ -64,7 +48,6 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
 export default App;
