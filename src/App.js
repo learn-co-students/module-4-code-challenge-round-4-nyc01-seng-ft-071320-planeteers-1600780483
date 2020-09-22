@@ -9,7 +9,8 @@ import SearchBar from './Components/SearchBar'
 class App extends React.Component {
 
   state={
-    planeteerArray: []
+    planeteerArray: [],
+    planeteerId: []
   }
 
   clickHandler = (id) => {
@@ -17,7 +18,7 @@ class App extends React.Component {
   }
 
   render(){
-
+    let planeteerIdArray = this.state.planeteerId.map( id => id.this.state.planeteerArray.find(planeteerArray => planeteerArray.id === id))
     return (
       <div>
         <Header />
