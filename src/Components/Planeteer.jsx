@@ -25,6 +25,7 @@ class Planeteer extends React.Component {
             <div className="card__detail">
               <p>{this.props.planeteer.twitter}</p>
               <p>{this.props.planeteer.fromUSA ? "USA-based" : "Working overseas"}</p>
+              <p>Age: {new Date().getFullYear() - this.props.planeteer.born}</p>
             </div>
           </div>
         </div>

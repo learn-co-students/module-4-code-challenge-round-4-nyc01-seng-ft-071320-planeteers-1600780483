@@ -12,7 +12,8 @@ class App extends React.Component {
 
   state = {
     planeteers: [],
-    searchVal: ""
+    searchVal: "",
+    sorted: false
   }
   
   
@@ -32,12 +33,35 @@ class App extends React.Component {
     return this.state.planeteers.filter(el => (el.name.toLowerCase() && el.bio.toLowerCase()).includes(this.state.searchVal.toLowerCase()) )
   }
 
+  addRandPlaneteer = (planeteer) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(planeteer)
+    }
+    fetch(baseUrl, options)
+      .then(resp => resp.json())
+      .then(obj => {
+        let newArray = [...this.state.planeteers, obj]
+        this.setState({
+          planeteers: newArray
+        })
+      })
+  }
+
+  sortHandler = () => {
+    console.log(this.state.planeteers.sort())
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <SearchBar searchVal={this.state.searchVal} changeHandler={this.changeHandler} />
-        <RandomButton/>
+        <SearchBar searchVal={this.state.searchVal} changeHandler={this.changeHandler} sortHandler={this.sortHandler}/>
+        <RandomButton addRandPlaneteer={this.addRandPlaneteer} />
         <PlaneteersContainer planeteers={this.filteredPlaneteers()} />
       </div>
     );
