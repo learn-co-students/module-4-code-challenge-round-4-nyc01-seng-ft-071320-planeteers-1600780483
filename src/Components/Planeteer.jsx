@@ -8,6 +8,11 @@ class Planeteer extends React.Component {
     quote: this.props.planeteer.quote
   }
   
+  findAge = () => {
+    let currentYear = new Date().getFullYear()
+    let birthYear = this.props.planeteer.born
+    return  currentYear - birthYear
+  }
 
     clickHandler = () => {
       if (this.state.clicked === true) {
@@ -19,6 +24,7 @@ class Planeteer extends React.Component {
 
   
   render() {
+    console.log(this.findAge())
     return (
       <li className="cards__item">
         <div className="card">
@@ -27,7 +33,8 @@ class Planeteer extends React.Component {
             <div className="card__title">{this.props.planeteer.name}</div>
             <p className="card__text">{this.state.clicked ? this.state.quote : this.state.bio}</p>
             <div className="card__detail">
-              <p>{this.props.planeteer.twitter}</p>
+              <p>Age: {this.findAge()}</p><br></br>
+              <p>Twitter: {this.props.planeteer.twitter}</p>
               <p>{this.props.planeteer.fromUSA ? "USA-based" : "Working overseas"}</p>
             </div>
           </div>

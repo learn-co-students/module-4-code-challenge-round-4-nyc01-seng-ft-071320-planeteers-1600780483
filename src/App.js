@@ -21,6 +21,15 @@ class App extends React.Component {
     .then(data => this.setState({planeteerArray: data}))
   }
 
+  // searchHandler = (searchValue) => {
+  //   this.setState({search: searchValue})
+  //   this.filterPlaneteers()
+  // }
+
+  // buggy bc this.setState is async and its running filter planeteers b4 setState
+  filterPlaneteers = () => {
+    return this.state.planeteerArray.filter(ele => ele.name.toLowerCase().includes(this.state.search))
+  }
 
   searchHandler = (searchValue) => {
     this.setState({
@@ -30,16 +39,10 @@ class App extends React.Component {
   });
   }
   
-  // buggy bc this.setState is async and its running filter planeteers b4 setState
-  filterPlaneteers = () => {
-    return this.state.planeteerArray.filter(ele => ele.name.toLowerCase().includes(this.state.search))
-  }
-
-  
   
   
   render(){
-    console.log("state:", this.state)
+    // console.log("state:", this.state)
     return (
       <div>
         <Header />
