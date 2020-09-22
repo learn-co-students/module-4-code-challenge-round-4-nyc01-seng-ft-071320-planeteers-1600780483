@@ -6,11 +6,17 @@ class SearchBar extends React.Component {
     searchTerm: ""
   }
 
+  
 
   render() {
     return (
+      <>
       <div className="search">
       </div>
+      <form>
+        <input type="text" placeholder="Search" value={this.state.searchTerm}></input>
+      </form>
+      </>
     );
   }
 
