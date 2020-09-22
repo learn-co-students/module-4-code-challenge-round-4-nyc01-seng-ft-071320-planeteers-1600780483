@@ -46,7 +46,7 @@ These deliverables are not required to pass the code challenge, but if you have 
 
 As a user, I should be able to:
 
-- See the age of the planeteer in the `Planeteer` component (To calculate the age, first figure out how to get the current year in JavaScript and then subtract the planeteer's birth year from it.)
+<!-- - See the age of the planeteer in the `Planeteer` component (To calculate the age, first figure out how to get the current year in JavaScript and then subtract the planeteer's birth year from it.) -->
 - Click the `RandomButton` to render a random planeteer to the list of planeteers on the page. Additionally, the new random planeteer should be persisted to the database.
 - Click on a checkbox in the `SearchBar` component that, when checked, sorts the planeteers in the `PlaneteersContainer` from youngest to oldest. When unchecked, the planeteers should be sorted by ID. When viewing a filtered list of planeteers, the sort should only sort the filtered list.
 

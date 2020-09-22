@@ -10,6 +10,15 @@ class Planeteer extends React.Component {
     this.setState({ clicked: !this.state.clicked})
   }
 
+  ageRender = () => {
+    let d = new Date()
+    let n = d.getFullYear()
+    // console.log(n)
+    let age = (n - this.props.planeteer.born)
+    // console.log(age)
+    return age
+  }
+
   render() {
     // console.log(this.props)
     return (
@@ -21,6 +30,7 @@ class Planeteer extends React.Component {
           <img onClick={this.cardTextHandler} src={this.props.planeteer.pictureUrl} alt={this.props.planeteer.name} className="card__image" />
           <div className="card__content">
             <div className="card__title">{this.props.planeteer.name}</div>
+            <div className="card__age">{this.ageRender()} years old</div>
     {this.state.clicked ? <p className="card__text">{this.props.planeteer.quote}</p> : <p className="card__text">{this.props.planeteer.bio}</p>}
             <div className="card__detail">
               <p>{this.props.planeteer.twitter}</p>
