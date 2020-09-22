@@ -11,6 +11,12 @@ class Planeteer extends React.Component {
     }));
   };
 
+  birthday = () => {
+    let today = new Date();
+    let year = today.getFullYear();
+    return year - this.props.planeteer.born;
+  };
+
   render() {
     const {
       // id,
@@ -36,6 +42,7 @@ class Planeteer extends React.Component {
             <p className='card__text'>{this.state.clicked ? quote : bio}</p>
             <div className='card__detail'>
               <p>{twitter}</p>
+              <p>Age: {this.birthday()}</p>
               <p>{fromUSA ? 'USA-Based' : 'Working Overseas'}</p>
             </div>
           </div>
