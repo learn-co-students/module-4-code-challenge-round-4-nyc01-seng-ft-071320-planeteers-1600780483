@@ -27,7 +27,6 @@ class Planeteer extends React.Component {
       </li>
     );
   }
-
 }
 
 export default Planeteer;

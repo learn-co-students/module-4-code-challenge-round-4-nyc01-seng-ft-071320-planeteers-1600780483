@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-
 import Header from './Components/Header'
 import RandomButton from './Components/RandomButton'
 import PlaneteersContainer from './Components/PlaneteersContainer'

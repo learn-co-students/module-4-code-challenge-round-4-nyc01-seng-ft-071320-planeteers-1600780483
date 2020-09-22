@@ -2,15 +2,6 @@ import React from 'react';
 
 class SearchBar extends React.Component {
 
-  // state = {
-  //   searchTerm: ""
-  // }
-
-  // changeHandler = e => {
-  //   this.setState({searchTerm: e.target.value})
-  //   this.props.changeHandler(this.state.searchTerm)
-  // }
-
   render() {
     return (
       <div className="search">
@@ -23,7 +14,6 @@ class SearchBar extends React.Component {
       </div>
     );
   }
-
 }
 
 export default SearchBar;
