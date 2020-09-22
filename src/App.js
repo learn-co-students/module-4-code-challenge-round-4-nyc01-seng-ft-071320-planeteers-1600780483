@@ -10,7 +10,8 @@ class App extends React.Component {
 
   state = {
     planeteers: [],
-    search: ''
+    search: '',
+    filter: false
   }
 
   changeHandler = (event) => {
@@ -28,7 +29,7 @@ class App extends React.Component {
     })
   }
 
-  filterData = (data) => {
+  searchData = (data) => {
     if (this.state.search === '') {
       return data
     } else {
@@ -62,14 +63,49 @@ class App extends React.Component {
     })
   }
 
+  checkFilterStatus = (event) => {
+    event.persist()
+    if (event.target.checked) {
+      this.setState(()=>({
+        filter: true
+      }))  
+    } else {
+      this.setState(()=>({
+        filter: false
+      }))
+    }
+  }
+
+  compare = (a, b) => {
+    const ageA = a.born
+    const ageB = b.born
+  
+    let comparison = 0;
+    if (ageA > ageB) {
+      comparison = -1;
+    } else if (ageA < ageB) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
+  filter = (data) => {
+    if (this.state.filter) {
+      return data.sort(this.compare)
+    } else {
+      return data
+    }
+  }
+
   render(){
+    console.log(this.state)
     const {planeteers, search} = this.state
     return (
       <div>
         <Header />
-        <SearchBar search={search} changeHandler={this.changeHandler}/>
+        <SearchBar checked={this.checkFilterStatus} search={search} changeHandler={this.changeHandler}/>
         <RandomButton parentClickHandler={this.clickHandler}/>
-        <PlaneteersContainer planeteers={this.filterData(planeteers)}/>
+        <PlaneteersContainer planeteers={this.filter(this.searchData(planeteers))}/>
       </div>
     );
   }
