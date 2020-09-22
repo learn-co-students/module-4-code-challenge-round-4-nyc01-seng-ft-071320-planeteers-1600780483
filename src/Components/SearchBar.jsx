@@ -11,6 +11,14 @@ class SearchBar extends React.Component {
             value={this.props.searchTerm}
             onChange={this.props.changeHandler}
           />
+          <label>
+            Sort
+            <input
+              type="checkbox"
+              checked={this.props.sortChecked}
+              onChange={this.props.sortHandler}
+            />
+          </label>
       </div>
     );
   }

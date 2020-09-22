@@ -9,7 +9,8 @@ class App extends React.Component {
 
   state = {
     planeteers: [],
-    searchTerm: ""
+    searchTerm: "",
+    sortChecked: false
   }
 
   componentDidMount() {
@@ -24,11 +25,22 @@ class App extends React.Component {
     this.setState({searchTerm: e.target.value.toLowerCase()})
   }
 
+  sortHandler = () => {
+    this.setState({sortChecked: !this.state.sortChecked})
+  }
+
   filteredPlaneteers = () => {
     if (this.state.searchTerm) {
       return this.state.planeteers.filter(planeteer => planeteer.name.toLowerCase().includes(this.state.searchTerm))
     }
     return this.state.planeteers
+  }
+
+  sortedPlaneteers = () => {
+    if (this.state.sortChecked) {
+      return this.filteredPlaneteers().sort((a, b) => b.born - a.born)
+    }
+    return this.filteredPlaneteers()
   }
 
   addRandomPlaneteer = planeteerObj => {
@@ -52,9 +64,9 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <SearchBar searchTerm={this.state.searchTerm} changeHandler={this.changeHandler}/>
+        <SearchBar searchTerm={this.state.searchTerm} sortChecked={this.state.sortChecked} changeHandler={this.changeHandler} sortHandler={this.sortHandler}/>
         <RandomButton clickHandler={this.addRandomPlaneteer}/>
-        <PlaneteersContainer planeteers={this.filteredPlaneteers()}/>
+        <PlaneteersContainer planeteers={this.sortedPlaneteers()}/>
       </div>
     );
   }
