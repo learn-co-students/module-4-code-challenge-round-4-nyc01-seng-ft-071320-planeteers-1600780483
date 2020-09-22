@@ -11,7 +11,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "json-server --watch db.json -p 4000 & open http://localhost:4000/planeteers & react-scripts start && fg",
+    "start": "json-server --watch db.json -p 3001 & open http://localhost:3001/planeteers & react-scripts start && fg",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
