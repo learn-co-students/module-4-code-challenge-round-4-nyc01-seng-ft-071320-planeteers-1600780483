@@ -24,7 +24,6 @@ class Planeteer extends React.Component {
 
   
   render() {
-    console.log(this.findAge())
     return (
       <li className="cards__item">
         <div className="card">

@@ -10,11 +10,12 @@ class SearchBar extends React.Component {
     // console.log("im changing", e.target.value)
     e.persist();
     this.setState({searchValue: e.target.value})
-    this.props.searchHandler(this.state.searchValue)
+    this.props.searchHandler(e.target.value)
+    // changed line 13 to take in e.target.value instead of this.state.searchValue and bugs went away
    }
   
     render() {
-      // console.log("state in search bar", this.state)
+      console.log("state in search bar", this.state)
     return (
       <div className="search">
         <input type="search" placeholder="Search Planeteers" value={this.state.searchValue} onChange={this.changeHandler}/>

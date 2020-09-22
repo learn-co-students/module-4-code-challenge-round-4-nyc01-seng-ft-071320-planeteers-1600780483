@@ -14,7 +14,6 @@ class App extends React.Component {
   }
   
   
-  
   componentDidMount() {
     fetch("http://localhost:4000/planeteers")
     .then(resp => resp.json())
@@ -26,23 +25,23 @@ class App extends React.Component {
   //   this.filterPlaneteers()
   // }
 
-  // buggy bc this.setState is async and its running filter planeteers b4 setState
+  // buggy bc this.setState is async and its running filter planeteers b4 setState, do something w/ filtered array
   filterPlaneteers = () => {
     return this.state.planeteerArray.filter(ele => ele.name.toLowerCase().includes(this.state.search))
   }
 
+  // it sets state w/ the search value but then re renders. when it rerenders, it renders w/ filterPlaneteers which is still
+  // empty bc it hasnt been called yet
   searchHandler = (searchValue) => {
-    this.setState({
-      search: searchValue
-  }, () => {
-      this.filterPlaneteers();
-  });
+    this.setState({search: searchValue}, 
+      () => {this.filterPlaneteers();}
+  );
   }
   
-  
-  
   render(){
-    // console.log("state:", this.state)
+    console.log("state in render:", this.state.planeteerArray)
+    console.log("search in app", this.state.search)
+    // this.filterPlaneteers();
     return (
       <div>
         <Header />
