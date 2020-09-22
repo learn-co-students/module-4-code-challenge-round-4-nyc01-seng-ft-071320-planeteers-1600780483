@@ -31,9 +31,31 @@ class App extends React.Component {
 
   filterPlaneteers = () => {
     return this.state.planeteers.filter(planeteer => {
+      console.log(planeteer.name)
+      console.log(planeteer.bio)
       return planeteer.name.toLowerCase().includes(this.state.searchValue.toLowerCase()) || planeteer.bio.toLowerCase().includes(this.state.searchValue.toLowerCase())
     })
  
+  }
+
+  randomHandler = (planeteerObj) => {
+    console.log(planeteerObj)
+    fetch('http://localhost:4000/planeteers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        accepts: 'application/json'
+      },
+      body: JSON.stringify(planeteerObj)
+    }).then(response => response.json())
+    .then(newObj => {
+      if(newObj.id !== undefined) {
+        let newArray = [newObj, ...this.state.planeteers]
+        this.setState({
+          planeteers: newArray
+        })
+      }
+    })
   }
 
   render(){
@@ -41,7 +63,7 @@ class App extends React.Component {
       <div>
         <Header />
         <SearchBar changeHandler={this.changeHandler} searchValue={this.state.searchValue}/>
-        <RandomButton/>
+        <RandomButton randomHandler={this.randomHandler}/>
         <PlaneteersContainer planeteers={this.filterPlaneteers()} />
       </div>
     );
