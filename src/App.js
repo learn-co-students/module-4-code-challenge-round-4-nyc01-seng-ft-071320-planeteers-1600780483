@@ -8,13 +8,22 @@ import SearchBar from './Components/SearchBar'
 
 class App extends React.Component {
 
+  state={
+    searchValue:"",
+  }
+
+  changer=(e)=>{
+    e.persist()
+    this.setState({searchValue:e.target.value})
+  }
+
   render(){
     return (
       <div>
         <Header />
-        <SearchBar />
+        <SearchBar changer={this.changer} search={this.state.searchValue}/>
         <RandomButton/>
-        <PlaneteersContainer />
+        <PlaneteersContainer search={this.state.searchValue}/>
       </div>
     );
   }

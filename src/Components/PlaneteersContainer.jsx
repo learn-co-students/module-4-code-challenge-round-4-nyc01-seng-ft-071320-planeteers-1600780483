@@ -13,11 +13,17 @@ class PlaneteersContainer extends React.Component {
     .then(data=>this.setState(()=>({heros:data})))
   }
 
-  summon=()=>{
-    return this.state.heros.map(el=><Planeteer key={el.id} el={el}/>)
+  filter=()=>{
+    return this.state.heros.filter(el=>el.name.toLowerCase().includes(this.props.search.toLowerCase()) || el.bio.toLowerCase().includes(this.props.search.toLowerCase()))  
   }
+
+  summon=()=>{
+    return this.filter().map(el=><Planeteer key={el.id} el={el}/>)
+  }
+
   render(){
-    console.log(this.state)
+    // console.log(this.state)
+    console.log(this.props.search)
     return (
       <ul className="cards">
         {

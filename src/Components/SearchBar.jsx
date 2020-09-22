@@ -1,14 +1,15 @@
 import React from 'react';
 
-class SearchBar extends React.Component {
+const SearchBar =(props)=> {
 
-  render() {
+  // render() {
+    // console.log(this.props.search)
     return (
       <div className="search">
-        <input type='text' placeholder='by name or bio'/>
+        <input type='text' placeholder='by name or bio' value={props.search} onChange={props.changer}/>
       </div>
     );
-  }
+  // }
 
 }
 

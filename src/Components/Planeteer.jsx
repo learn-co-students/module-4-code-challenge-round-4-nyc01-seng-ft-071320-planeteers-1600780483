@@ -11,7 +11,7 @@ class Planeteer extends React.Component {
   }
   render() {
     const {name, fromUSA, born, bio, quote, pictureUrl, twitter, id} = this.props.el
-    console.log(this.props, this.props.el.name, name)
+    // console.log(this.props, this.props.el.name, name)
     return (
       <li className="cards__item">
         <div className="card">
