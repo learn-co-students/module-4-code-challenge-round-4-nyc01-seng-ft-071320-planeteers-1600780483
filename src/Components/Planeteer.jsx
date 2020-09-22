@@ -1,18 +1,31 @@
 import React from 'react';
-
 class Planeteer extends React.Component {
 
+  // character.state.clicked ? {this.props.quote} : {this.props.bio}
+  // or on click of the image it should toggele between the props of that character
+
+
+  state={
+    clicked: false
+  }
+  
+  changeHandler = () =>{
+    this.setState(()=>({ clicked: !this.state.clicked }))
+  }
+  
+  
+  
   render() {
     return (
       <li className="cards__item">
         <div className="card">
-          <img src={"RENDER IMAGE"} alt={"RENDER PERSON NAME"} className="card__image" />
+          <img onClick={this.changeHandler} src={this.props.character.pictureUrl} alt={this.props.character.name} className="card__image" />
           <div className="card__content">
-            <div className="card__title">{"RENDER NAME"}</div>
-            <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+            <div className="card__title">{this.props.character.name}</div>
+            <p name="quote" className="card__text">{this.state.clicked ? this.props.quote : this.props.bio}</p>
             <div className="card__detail">
-              <p>{"RENDER TWITTER HANDLE"}</p>
-              <p>{"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"}</p>
+              <p>{this.props.character.twitter}</p>
+              <p>{this.props.character.fromUSA ? "USA-based" : "Working overseas"}</p>
             </div>
           </div>
         </div>
