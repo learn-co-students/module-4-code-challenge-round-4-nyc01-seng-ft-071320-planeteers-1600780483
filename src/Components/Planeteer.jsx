@@ -11,6 +11,14 @@ class Planeteer extends React.Component {
 		});
 	};
 
+	// usaChangeHandler = (e) => {
+	// 	// e.target.value === true
+	// 		// ? this.setState({ fromUSA: true })
+	// 		// : this.setState({ fromUSA: false });
+	// 	? "USA-based"
+	// 	: "Working overseas"
+	// };
+
 	render() {
 		return (
 			<li className="cards__item">
@@ -33,9 +41,9 @@ class Planeteer extends React.Component {
 						<div className="card__detail">
 							<p>{this.props.planeteer.twitter}</p>
 							<p>
-								{
-									"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"
-								}
+								{this.props.planeteer.fromUSA === true
+									? "USA-based"
+									: "Working overseas"}
 							</p>
 						</div>
 					</div>
