@@ -46,7 +46,6 @@ class App extends React.Component {
 
   newPlaneteer=(event) => {
     const {planeteers, name, fromUSA, born, quote, bio, pictureUrl, twitter} = this.state
-    event.persist()
 
     let options = {
       method: 'POST',
@@ -55,13 +54,13 @@ class App extends React.Component {
         'accept':'application/json'
       },
       body: JSON.stringify({
-        name: name,
-        fromUSA: fromUSA,
-        born: born,
-        quote: quote,
-        bio: bio,
-        pictureUrl: pictureUrl,
-        twitter: twitter
+        name: event.name,
+        fromUSA: event.fromUSA,
+        born: event.born,
+        quote: event.quote,
+        bio: event.bio,
+        pictureUrl: event.pictureUrl,
+        twitter: event.twitter
       })
     }
     fetch(`http://localhost:4000/planeteers`, options)
@@ -70,6 +69,44 @@ class App extends React.Component {
       planeteers: [data, ...planeteers]
     }))
   }
+//   newPlaneteer =( {name, fromUSA, born, quote, bio, pictureUrl, twitter} ) => {
+//     let options = {
+//       method: 'POST',
+//       headers: {
+//         'content-type':'application/json',
+//         'accept':'application/json'
+//       },
+//       body: JSON.stringify({
+//         name: name,
+//         fromUSA: fromUSA,
+//         born: born,
+//         quote: quote,
+//         bio: bio,
+//         pictureUrl: pictureUrl,
+//         twitter: twitter
+//       })
+//     }
+//     fetch(`http://localhost:4000/planeteers`, options)
+//     .then(res => res.json())
+//     .then(data => {
+//       this.setState(() =>({
+//         planeteers: [...this.state.planeteers, data]
+//       }))
+//     })
+//   }
+
+//   render(){
+//     const {planeteers, search} = this.state
+//     return (
+//       <div>
+//         <Header />
+//         <SearchBar search={search} changeHandler={this.changeHandler}/>
+//         <RandomButton newPlaneteer={this.newPlaneteer}/>
+//         <PlaneteersContainer planeteers={this.filterSearch(planeteers)}/>
+//       </div>
+//     );
+//   }
+
 
   render(){
     const {planeteers, search} = this.state

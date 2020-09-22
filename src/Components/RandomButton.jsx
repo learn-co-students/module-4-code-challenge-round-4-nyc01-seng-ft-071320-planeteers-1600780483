@@ -44,7 +44,7 @@ class RandomButton extends React.Component {
 
   handleClick = () => {
     const randomPlaneteer = arrayOfPlaneteers[Math.floor(Math.random() * arrayOfPlaneteers.length)]
-    this.props.newPlaneteer()
+    this.props.newPlaneteer(randomPlaneteer)
     console.log(randomPlaneteer);
   }
 
